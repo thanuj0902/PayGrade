@@ -1,4 +1,3 @@
-// frontend/src/app/company/[name]/page.tsx
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getCompany } from "@/lib/api";
@@ -22,7 +21,6 @@ export default async function CompanyPage({ params }: { params: { name: string }
   return (
     <div style={{ maxWidth: 1280, margin: '0 auto', padding: '40px 24px', position: 'relative', zIndex: 1 }}>
 
-      {/* Back */}
       <Link href="/" style={{
         display: 'inline-flex', alignItems: 'center', gap: 6,
         color: 'var(--muted)', textDecoration: 'none', fontSize: '0.78rem',
@@ -31,7 +29,6 @@ export default async function CompanyPage({ params }: { params: { name: string }
         ← back to salaries
       </Link>
 
-      {/* Header */}
       <div className="fade-up" style={{ marginBottom: 32 }}>
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 16, flexWrap: 'wrap' }}>
           <h1 style={{
@@ -50,7 +47,6 @@ export default async function CompanyPage({ params }: { params: { name: string }
         </div>
       </div>
 
-      {/* Stats */}
       <div className="fade-up stagger-1" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 32 }}>
         {[
           { label: 'Median Total TC', value: formatINR(median_tc), accent: true },
@@ -82,7 +78,6 @@ export default async function CompanyPage({ params }: { params: { name: string }
         ))}
       </div>
 
-      {/* Level breakdown */}
       {sortedLevels.length > 0 && (
         <div className="fade-up stagger-2" style={{ marginBottom: 32 }}>
           <h2 style={{
@@ -137,7 +132,6 @@ export default async function CompanyPage({ params }: { params: { name: string }
         </div>
       )}
 
-      {/* Table */}
       <div className="fade-up stagger-3">
         <h2 style={{
           fontFamily: 'Syne, sans-serif', fontWeight: 700,

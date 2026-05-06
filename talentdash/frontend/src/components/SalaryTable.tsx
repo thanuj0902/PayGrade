@@ -1,14 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import type { Salary } from "@/types/salary";
 import LevelBadge from "./LevelBadge";
 import { formatINR, titleCase } from "@/lib/format";
- 
+
 interface Props {
   salaries: Salary[];
   onSelectForCompare?: (salary: Salary) => void;
   selectedIds?: string[];
 }
- 
+
 export default function SalaryTable({ salaries, onSelectForCompare, selectedIds = [] }: Props) {
   if (salaries.length === 0) {
     return (
@@ -27,7 +29,7 @@ export default function SalaryTable({ salaries, onSelectForCompare, selectedIds 
       </div>
     );
   }
- 
+
   return (
     <div style={{
       background: 'var(--bg2)', border: '1px solid var(--border)',
@@ -81,11 +83,7 @@ export default function SalaryTable({ salaries, onSelectForCompare, selectedIds 
                     <Link href={`/company/${encodeURIComponent(s.company)}`} style={{
                       color: 'var(--text)', textDecoration: 'none',
                       fontFamily: 'Syne, sans-serif', fontWeight: 600, fontSize: '0.82rem',
-                      transition: 'color 0.15s',
-                    }}
-                    onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent2)')}
-                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--text)')}
-                    >
+                    }}>
                       {titleCase(s.company)}
                     </Link>
                   </td>
