@@ -23,10 +23,9 @@ export default async function CompanyPage({ params }: Props) {
   const { company, total_entries, median_tc, level_distribution, level_stats, salaries } =
     result.data;
 
-  const sortedLevels = Object.entries(level_stats).sort(
+  const sortedLevels = Object.entries(level_stats as Record<string, { count: number; avg_tc: number; median_tc: number }>).sort(
     ([, a], [, b]) => b.median_tc - a.median_tc
   );
-
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Back */}
