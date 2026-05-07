@@ -1,68 +1,56 @@
-// frontend/src/components/Navbar.tsx
 "use client";
- 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
- 
+
 export default function Navbar() {
   const pathname = usePathname();
- 
   return (
     <nav style={{
-      position: 'sticky', top: 0, zIndex: 50,
-      borderBottom: '1px solid var(--border)',
-      background: 'rgba(10,10,15,0.85)',
-      backdropFilter: 'blur(20px)',
+      position: 'sticky', top: 3, zIndex: 50,
+      background: '#FFFFFF',
+      borderBottom: '1px solid #E2E8F0',
+      boxShadow: '0 1px 3px rgba(0,0,0,0.06)',
     }}>
       <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
         <div style={{ height: 56, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
- 
-          {/* Logo */}
+
           <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
             <div style={{
-              width: 28, height: 28, borderRadius: 6,
-              background: 'linear-gradient(135deg, #7c6af7, #a78bfa)',
+              width: 30, height: 30, borderRadius: 6,
+              background: 'linear-gradient(135deg, #1D4ED8, #3B82F6)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 12, fontWeight: 700, color: 'white',
-              fontFamily: 'Syne, sans-serif',
+              color: 'white', fontWeight: 700, fontSize: 13,
+              fontFamily: 'IBM Plex Sans, sans-serif',
+              boxShadow: '0 2px 8px rgba(29,78,216,0.3)',
             }}>T</div>
-            <span style={{
-              fontFamily: 'Syne, sans-serif', fontWeight: 800,
-              fontSize: '1rem', color: 'var(--text)', letterSpacing: '-0.02em',
-            }}>
-              Talent<span style={{ color: 'var(--accent)' }}>Dash</span>
-            </span>
-            <span style={{
-              fontSize: '0.6rem', color: 'var(--muted)', letterSpacing: '0.15em',
-              textTransform: 'uppercase', fontFamily: 'DM Mono, monospace',
-              marginTop: 1,
-            }}>beta</span>
+            <div>
+              <div style={{
+                fontFamily: 'IBM Plex Sans, sans-serif', fontWeight: 700,
+                fontSize: '0.95rem', color: '#0F172A', letterSpacing: '-0.01em', lineHeight: 1,
+              }}>TalentDash</div>
+              <div style={{
+                fontSize: '0.6rem', color: '#64748B', letterSpacing: '0.1em',
+                textTransform: 'uppercase', fontFamily: 'IBM Plex Mono, monospace',
+                lineHeight: 1, marginTop: 2,
+              }}>Compensation Intel</div>
+            </div>
           </Link>
- 
-          {/* Nav */}
-          <div style={{ display: 'flex', gap: 4 }}>
-            {[
-              { href: '/', label: 'Salaries' },
-              { href: '/compare', label: 'Compare' },
-            ].map(({ href, label }) => (
+
+          <div style={{ display: 'flex', gap: 2 }}>
+            {[{ href: '/', label: 'Salaries' }, { href: '/compare', label: 'Compare' }].map(({ href, label }) => (
               <Link key={href} href={href} style={{
-                textDecoration: 'none',
-                padding: '6px 14px',
-                borderRadius: 6,
-                fontSize: '0.78rem',
-                fontFamily: 'Syne, sans-serif',
-                fontWeight: 600,
-                letterSpacing: '0.03em',
-                color: pathname === href ? 'white' : 'var(--muted)',
-                background: pathname === href ? 'var(--bg3)' : 'transparent',
-                border: `1px solid ${pathname === href ? 'var(--border2)' : 'transparent'}`,
+                textDecoration: 'none', padding: '6px 16px', borderRadius: 6,
+                fontSize: '0.82rem', fontFamily: 'IBM Plex Sans, sans-serif', fontWeight: 500,
+                color: pathname === href ? '#1D4ED8' : '#64748B',
+                background: pathname === href ? '#DBEAFE' : 'transparent',
+                borderBottom: pathname === href ? '2px solid #1D4ED8' : '2px solid transparent',
                 transition: 'all 0.15s',
               }}>
                 {label}
               </Link>
             ))}
           </div>
- 
+
         </div>
       </div>
     </nav>

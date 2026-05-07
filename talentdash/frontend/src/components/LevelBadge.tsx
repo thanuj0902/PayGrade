@@ -1,41 +1,28 @@
-// frontend/src/components/LevelBadge.tsx
-
 const LEVEL_STYLES: Record<string, { bg: string; color: string; border: string }> = {
-  l3:  { bg: 'rgba(59,130,246,0.1)', color: '#60a5fa', border: 'rgba(59,130,246,0.25)' },
-  l4:  { bg: 'rgba(99,102,241,0.1)', color: '#818cf8', border: 'rgba(99,102,241,0.25)' },
-  l5:  { bg: 'rgba(124,106,247,0.12)', color: '#a78bfa', border: 'rgba(124,106,247,0.3)' },
-  l6:  { bg: 'rgba(168,85,247,0.1)', color: '#c084fc', border: 'rgba(168,85,247,0.25)' },
-  l7:  { bg: 'rgba(217,70,239,0.1)', color: '#e879f9', border: 'rgba(217,70,239,0.25)' },
-  l8:  { bg: 'rgba(236,72,153,0.1)', color: '#f472b6', border: 'rgba(236,72,153,0.25)' },
-  sde1: { bg: 'rgba(20,184,166,0.1)', color: '#2dd4bf', border: 'rgba(20,184,166,0.25)' },
-  sde2: { bg: 'rgba(52,211,153,0.1)', color: '#34d399', border: 'rgba(52,211,153,0.25)' },
-  sde3: { bg: 'rgba(16,185,129,0.12)', color: '#6ee7b7', border: 'rgba(16,185,129,0.3)' },
-  'junior engineer': { bg: 'rgba(251,191,36,0.08)', color: '#fbbf24', border: 'rgba(251,191,36,0.2)' },
-  'engineer': { bg: 'rgba(245,158,11,0.1)', color: '#f59e0b', border: 'rgba(245,158,11,0.25)' },
-  'senior engineer': { bg: 'rgba(249,115,22,0.1)', color: '#fb923c', border: 'rgba(249,115,22,0.25)' },
-  'staff engineer': { bg: 'rgba(239,68,68,0.1)', color: '#f87171', border: 'rgba(239,68,68,0.25)' },
-  'principal engineer': { bg: 'rgba(244,63,94,0.1)', color: '#fb7185', border: 'rgba(244,63,94,0.25)' },
+  l3:  { bg: '#EFF6FF', color: '#1D4ED8', border: '#BFDBFE' },
+  l4:  { bg: '#EEF2FF', color: '#4338CA', border: '#C7D2FE' },
+  l5:  { bg: '#F5F3FF', color: '#6D28D9', border: '#DDD6FE' },
+  l6:  { bg: '#FDF4FF', color: '#7E22CE', border: '#E9D5FF' },
+  l7:  { bg: '#FFF1F2', color: '#BE123C', border: '#FECDD3' },
+  l8:  { bg: '#FFF7ED', color: '#C2410C', border: '#FED7AA' },
+  sde1: { bg: '#F0FDF4', color: '#166534', border: '#BBF7D0' },
+  sde2: { bg: '#ECFDF5', color: '#065F46', border: '#A7F3D0' },
+  sde3: { bg: '#F0FDFA', color: '#0F766E', border: '#99F6E4' },
+  'junior engineer': { bg: '#FFFBEB', color: '#92400E', border: '#FDE68A' },
+  'engineer': { bg: '#FFF7ED', color: '#9A3412', border: '#FED7AA' },
+  'senior engineer': { bg: '#FFF1F2', color: '#9F1239', border: '#FECDD3' },
+  'staff engineer': { bg: '#FDF2F8', color: '#86198F', border: '#F5D0FE' },
+  'principal engineer': { bg: '#F5F3FF', color: '#5B21B6', border: '#DDD6FE' },
 };
 
 export default function LevelBadge({ level }: { level: string }) {
-  const style = LEVEL_STYLES[level.toLowerCase()] ?? {
-    bg: 'rgba(136,136,170,0.1)', color: '#8888aa', border: 'rgba(136,136,170,0.2)'
-  };
-
+  const s = LEVEL_STYLES[level.toLowerCase()] ?? { bg: '#F8FAFC', color: '#475569', border: '#CBD5E1' };
   return (
     <span style={{
-      fontFamily: 'DM Mono, monospace',
-      fontSize: '0.65rem',
-      fontWeight: 500,
-      letterSpacing: '0.08em',
-      padding: '3px 8px',
-      borderRadius: 4,
-      border: `1px solid ${style.border}`,
-      background: style.bg,
-      color: style.color,
-      display: 'inline-flex',
-      alignItems: 'center',
-      whiteSpace: 'nowrap',
+      fontFamily: 'IBM Plex Mono, monospace', fontSize: '0.65rem', fontWeight: 500,
+      letterSpacing: '0.05em', padding: '2px 8px', borderRadius: 4,
+      border: `1px solid ${s.border}`, background: s.bg, color: s.color,
+      display: 'inline-flex', alignItems: 'center', whiteSpace: 'nowrap',
     }}>
       {level.toUpperCase()}
     </span>

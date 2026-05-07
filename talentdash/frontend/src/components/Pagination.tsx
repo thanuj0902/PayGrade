@@ -1,18 +1,9 @@
-// frontend/src/components/Pagination.tsx
 "use client";
-
 import { useRouter, useSearchParams } from "next/navigation";
-import clsx from "clsx";
 
-interface Props {
-  currentPage: number;
-  totalPages: number;
-}
-
-export default function Pagination({ currentPage, totalPages }: Props) {
+export default function Pagination({ currentPage, totalPages }: { currentPage: number; totalPages: number }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-
   if (totalPages <= 1) return null;
 
   const goTo = (page: number) => {
@@ -21,50 +12,28 @@ export default function Pagination({ currentPage, totalPages }: Props) {
     router.push(`/?${params.toString()}`);
   };
 
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1).filter(
-    (p) => Math.abs(p - currentPage) <= 2 || p === 1 || p === totalPages
-  );
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1)
+    .filter(p => Math.abs(p - currentPage) <= 2 || p === 1 || p === totalPages);
+
+  const btn = (active: boolean, disabled = false) => ({
+    padding: '6px 12px', borderRadius: 6, cursor: disabled ? 'not-allowed' : 'pointer',
+    border: `1px solid ${active ? '#1D4ED8' : '#E2E8F0'}`,
+    background: active ? '#1D4ED8' : '#FFFFFF',
+    color: active ? 'white' : disabled ? '#CBD5E1' : '#475569',
+    fontFamily: 'IBM Plex Sans, sans-serif', fontSize: '0.8rem', fontWeight: 500,
+    opacity: disabled ? 0.5 : 1, transition: 'all 0.15s',
+  });
 
   return (
-    <div className="flex items-center justify-center gap-1 mt-6">
-      <button
-        onClick={() => goTo(currentPage - 1)}
-        disabled={currentPage === 1}
-        className="px-3 py-1.5 text-sm rounded-lg border border-ink-200 text-ink-600 hover:bg-ink-100 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-      >
-        ←
-      </button>
-
-      {pages.map((p, i) => {
-        const prev = pages[i - 1];
-        const showEllipsis = prev && p - prev > 1;
-        return (
-          <span key={p} className="flex items-center gap-1">
-            {showEllipsis && (
-              <span className="px-2 text-ink-400 text-sm">…</span>
-            )}
-            <button
-              onClick={() => goTo(p)}
-              className={clsx(
-                "px-3 py-1.5 text-sm rounded-lg border transition-colors",
-                p === currentPage
-                  ? "border-ink-900 bg-ink-900 text-ink-50"
-                  : "border-ink-200 text-ink-600 hover:bg-ink-100"
-              )}
-            >
-              {p}
-            </button>
-          </span>
-        );
-      })}
-
-      <button
-        onClick={() => goTo(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        className="px-3 py-1.5 text-sm rounded-lg border border-ink-200 text-ink-600 hover:bg-ink-100 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-      >
-        →
-      </button>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, marginTop: 20 }}>
+      <button onClick={() => goTo(currentPage - 1)} disabled={currentPage === 1} style={btn(false, currentPage === 1)}>← Prev</button>
+      {pages.map((p, i) => (
+        <span key={p} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          {pages[i - 1] && p - pages[i - 1] > 1 && <span style={{ color: '#94A3B8', fontSize: '0.8rem' }}>…</span>}
+          <button onClick={() => goTo(p)} style={btn(p === currentPage)}>{p}</button>
+        </span>
+      ))}
+      <button onClick={() => goTo(currentPage + 1)} disabled={currentPage === totalPages} style={btn(false, currentPage === totalPages)}>Next →</button>
     </div>
   );
 }
